@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "title": "Shrocks",
+        "description": "The most shreked socks of the swamp !",
+        "price": 719.9,
+        "image_tag": "shrocks.jpg",
+        "quantity": 5
+    }
+]

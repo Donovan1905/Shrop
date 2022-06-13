@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  back:
+    build: ./shrop-back
+    ports:
+      - "3000:3000"
+    networks:
+      default:
+        aliases:
+          - back
+  
+  front:
+    build: ./shrop
+    ports:
+      - "8080:8080"
+    networks:
+      default: 
+        aliases:
+          - front
