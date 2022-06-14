@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   back:
+    container_name: backend
     build: ./shrop-back
     ports:
       - "3000:3000"
@@ -11,10 +12,8 @@ services:
           - back
   
   front:
+    container_name: frontend
     build: ./shrop
     ports:
       - "8080:8080"
-    networks:
-      default: 
-        aliases:
-          - front
+    

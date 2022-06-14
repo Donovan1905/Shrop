@@ -1,18 +1,1 @@
-[
-    {
-        "id": 1,
-        "title": "Shrocks",
-        "description": "The most shreked socks of the swamp !",
-        "price": 719.9,
-        "image_tag": "shrocks.jpg",
-        "quantity": 2
-    },
-    {
-        "id": 2,
-        "title": "Shroap",
-        "description": "Soap made with tears of Rumpelstiltskin !",
-        "price": 650.9,
-        "image_tag": "shroap.jpg",
-        "quantity": 1
-    }
-]
+[]
