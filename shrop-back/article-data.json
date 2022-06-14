@@ -3,36 +3,28 @@
       "id": 1,
       "title": "Shrocks",
       "description": "The most shreked socks of the swamp !",
-      "product_type": "Socks",
       "image_tag": "shrocks.jpg",
-      "created_at": 2020,
       "price": 719.9
     },
     {
       "id": 2,
       "title": "Shroap",
-      "description": "Soap made with shrek ear poop",
-      "product_type": "power set/diesel engine",
+      "description": "Soap made with tears of Rumpelstiltskin !",
       "image_tag": "shroap.jpg",
-      "created_at": 2020,
       "price": 650.9
     },
     {
       "id": 3,
       "title": "Shrofa",
       "description": "Sofa to Nextflix and chill with Fiona !",
-      "product_type": "power set/diesel engine",
       "image_tag": "shrofa.jpg",
-      "created_at": 2017,
       "price": 619.9
     },
     {
       "id": 4,
       "title": "Shremistry",
       "description": "I have chemistry skills and you not, so get out my swamp !!",
-      "product_type": "power set/diesel engine",
       "image_tag": "shremistry.jpg",
-      "created_at": 2017,
       "price": 319.9
     }
   ]

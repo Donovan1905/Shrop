@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
+
 
 const app = express();
 const PRODUCT_DATA_FILE = path.join(__dirname, 'article-data.json');
@@ -10,12 +12,15 @@ const CART_DATA_FILE = path.join(__dirname, 'cart-data.json');
 app.set('port', (process.env.PORT || 3000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+//   res.setHeader('Pragma', 'no-cache');
+//   res.setHeader('Expires', '0');
+//   next();
+// });
+app.use(cors({
+  origin: '*'
+}))
 
 app.post('/cart', (req, res) => {
     fs.readFile(CART_DATA_FILE, (err, data) => {
@@ -47,9 +52,9 @@ app.delete('/cart/delete', (req, res) => {
 fs.readFile(CART_DATA_FILE, (err, data) => {
     let cartProducts = JSON.parse(data);
     cartProducts.map((cartProduct) => {
-    if (cartProduct.id === req.body.id && cartProduct.quantity > 1) {
+    if (cartProduct.id == req.body.id && cartProduct.quantity > 1) {
         cartProduct.quantity--;
-    } else if (cartProduct.id === req.body.id && cartProduct.quantity === 1) {
+    } else if (cartProduct.id == req.body.id && cartProduct.quantity == 1) {
         const cartIndexToRemove = cartProducts.findIndex(cartProduct => cartProduct.id === req.body.id);
         cartProducts.splice(cartIndexToRemove, 1);
     }

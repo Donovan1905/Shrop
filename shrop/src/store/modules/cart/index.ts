@@ -22,7 +22,7 @@ const actions = {
       });
     },
     removeCartItem ({ commit }, cartItem) {
-      axios.delete('/api/cart/delete', cartItem).then((response) => {
+      axios.delete('/api/cart/delete', { data: cartItem }).then((response) => {
         commit('UPDATE_CART_ITEMS', response.data)
       });
     },

@@ -1,28 +1,33 @@
 <template>
-    <div class="card">
+    <div class="card has-text-centered has-background-success-light">
+      <header class="card-header">
+        <p class="is-size-3 ml-4">
+          <b>{{ productItem.title }}</b>
+        </p>
+      </header>
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img :src="require(`@/assets/${productItem.image_tag}`)" alt="">
+        </figure>
+      </div>
       <div class="card-content">
         <div class="content">
-          <h4>{{ productItem.title }}</h4>
-          <img :src="require(`@/assets/${productItem.image_tag}`)" alt="">
-
           <hr>
           <br />
           <p class="mt-4">
             {{ productItem.description }}
           </p>
         </div>
+        <div class="tags has-addons content">
+          <span class="tag">Price</span>
+          <span class="tag is-primary">{{ productItem.price }}</span>
+        </div>
+      </div>
+      <div class="card-footer ">
         <div class="media">
-          <a
-            class="button is-rounded is-pulled-left"
-            @click="addCartItem(productItem)"
-          >
-            <strong>Add to Cart</strong>
-          </a>
-          <div class="media-right">
-            <a class="button is-primary is-light">
-              <strong>$ {{ productItem.price }}</strong>
+            <a class="card-footer-item " @click="addCartItem(productItem)">
+              <strong>Add to Cart</strong>
             </a>
-          </div>
         </div>
       </div>
     </div>
