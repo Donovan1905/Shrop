@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@types/mongoose": "^5.11.97"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.8"
+  }
+}

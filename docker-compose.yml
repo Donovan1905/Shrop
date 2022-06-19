@@ -10,10 +10,109 @@ services:
       default:
         aliases:
           - back
+    network_mode: bridge
   
   front:
     container_name: frontend
     build: ./shrop
     ports:
       - "8080:8080"
+    networks:
+      default:
+        aliases:
+          - front
+    network_mode: bridge
+  # api-gateway:
+  #   container_name: shrekway
+  #   build: ./apishrekway
+  #   ports:
+  #     - "8081:8081"
+  #   networks:
+  #     default:
+  #       aliases:
+  #         - shrekway
+  
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.4
+    ports:
+      - "3308:3308"
+    volumes:
+      - maria-data:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=DbAdmin69
+    networks:
+      default:
+        aliases:
+          - mariadb
+    network_mode: bridge
     
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=bukadmin
+      - RABBITMQ_DEFAULT_PASS=AmqpAdmin69
+    networks:
+      default:
+        aliases:
+          - rabbitmq
+    network_mode: bridge
+
+  redis:
+    container_name: cache
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass RedisAdmin69
+    environment:
+      - REDIS_PASSWORD="RedisAdmin69"
+    volumes: 
+      - redis:/data
+    networks:
+      default:
+        aliases:
+          - redis
+    network_mode: bridge
+
+  redis-commander:
+    container_name: redis-commander
+    image: rediscommander/redis-commander:latest
+    # environment:
+    #   - REDIS_HOSTS=redis://default:RedisAdmin69@cache:6379
+    #   - HTTP_USER=root
+    #   - HTTP_PASSWORD=Commander69
+    ports:
+      - "8081:8081"
+    depends_on:
+      - cache
+
+  mongo: 
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=MongoAdmin69
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/db
+    networks:
+      default:
+        aliases:
+          - redis
+    network_mode: bridge
+
+volumes:
+  maria-data: {}
+  rabbit-data: {}
+  redis: {}
+  mongo: {}
